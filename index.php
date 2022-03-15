@@ -3,7 +3,7 @@
 require "vendor/autoload.php";
 
 Flight::route("/",function(){
-  echo "Hello world-git";
+  echo "Hotel-bravo gym app";
 });
 Flight:: start();
 
