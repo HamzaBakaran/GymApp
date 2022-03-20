@@ -1,9 +1,20 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require 'rest/dao/ProjectDao.class.php';
 
 require "vendor/autoload.php";
 
+
+
+
 Flight::route("/",function(){
-  echo "Hotel-bravo gym app issue test lab 2";
+  $dao= new ProjectDao();
+
+
+
 });
 Flight:: start();
 
