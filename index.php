@@ -10,8 +10,14 @@ require "vendor/autoload.php";
 
 
 
+
+
+
 Flight::route("/",function(){
   $dao= new ProjectDao();
+  $results=$dao->get_all();
+  print_r($results);
+
 
 
 
