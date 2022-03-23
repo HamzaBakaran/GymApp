@@ -38,7 +38,7 @@
 
   /**
     * Method used to add todo to the database
-/**
+**/
     public function add($name){
       $stmt = $this->conn->prepare("INSERT INTO users (name) VALUES (:name)");
       $stmt->execute(['name' => $name);
