@@ -35,32 +35,47 @@
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /** Method to get user by id
+    **/
+    public function get_by_id($id){
+      $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+      $stmt->execute(['id' => $id]);
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return reset($result);
+    }
+
 
   /**
     * Method used to add todo to the database
-**/
+    **/
+
     public function add($name){
-      $stmt = $this->conn->prepare("INSERT INTO users (name) VALUES (:name)");
-      $stmt->execute(['name' => $name);
-    }
+       $stmt = $this->conn->prepare("INSERT INTO users (name,description) VALUES (:name,:description)");
+       $stmt->execute($name);
+       $name['id'] = $this->conn->lastInsertId();
+       return $name;
+     }
+
 
     /**
     * Delete todo record from the database
-
+**/
     public function delete($id){
       $stmt = $this->conn->prepare("DELETE FROM users WHERE id=:id");
       $stmt->bindParam(':id', $id); // SQL injection prevention
       $stmt->execute();
     }
 
-    /**
+/**
     * Update todo record
+**/
 
-    public function update($id, $name){
-      $stmt = $this->conn->prepare("UPDATE users SET name=:name  WHERE id=:id");
-      $stmt->execute(['id' => $id, ' name ' => $name);
+    public function update($data){
+      $stmt = $this->conn->prepare("UPDATE users SET name=:name, description=:description  WHERE id=:id");
+      $stmt->execute($data);
+
     }
-    **/
+
 
   }
 
