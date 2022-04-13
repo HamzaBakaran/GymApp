@@ -8,21 +8,21 @@
 * List all todos
 */
 Flight::route('GET /users', function(){
-  Flight::json(Flight::UserDao()->get_all());
+  Flight::json(Flight::userService()->get_all());
 });
 
 /**
 * List invidiual todo
 */
 Flight::route('GET /users/@id', function($id){
-  Flight::json(Flight::UserDao()->get_by_id($id));
+  Flight::json(Flight::userService()->get_by_id($id));
 });
 
 /**
 * add todo
 */
 Flight::route('POST /users', function(){
-  Flight::json(Flight::UserDao()->add(Flight::request()->data->getData()));
+  Flight::json(Flight::userService()->add(Flight::request()->data->getData()));
 });
 
 /**
@@ -31,18 +31,16 @@ Flight::route('POST /users', function(){
 Flight::route('PUT /users/@id', function($id){
   $data = Flight::request()->data->getData();
   $data['id'] = $id;
-  Flight::json(Flight::UserDao()->update($data));
+  Flight::json(Flight::userService()->update($data));
 });
 
 /**
 * delete todo
 */
 Flight::route('DELETE /users/@id', function($id){
-  Flight::UserDao()->delete($id);
+  Flight::userService()->delete($id);
   Flight::json(["message" => "deleted"]);
 });
-
-Flight::start();
 
 
 ?>

@@ -69,7 +69,10 @@
 
 
   function getUsers(){
+    console.log('users');
+
     $.get("rest/users", function(data) {
+      console.log(data);
 
       $("#todo-list").html("");
 

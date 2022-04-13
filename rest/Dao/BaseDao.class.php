@@ -22,7 +22,7 @@ class BaseDao{
     // set the PDO error mode to exception
     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   }
-  }
+
 
   /**
   * Method used to read all todo objects from database
