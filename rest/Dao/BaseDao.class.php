@@ -20,12 +20,7 @@ class BaseDao{
       $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    if($this->conn){
-      echo 'connected ';
-    }
-    // set the PDO error mode to exception
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  }
+
 
 
   /**
