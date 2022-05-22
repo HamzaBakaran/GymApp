@@ -9,9 +9,15 @@ require_once '../vendor/autoload.php';
 
 require_once 'services/UserService.class.php';
 require_once 'services/MembershipService.class.php';
+require_once 'dao/UserDao.class.php';
 
+Flight::register('userDao', 'UserDao');
 Flight::register('userService', 'UserService');
 Flight::register('membershipService', 'MembershipService');
+
+
+
+
 
 Flight::map('error', function(Exception $ex){
     // Handle error
@@ -20,6 +26,7 @@ Flight::map('error', function(Exception $ex){
 
 require_once './routes/UserRoutes.php';
 require_once 'routes/MembershipRoutes.php';
+require_once 'routes/UserLoginRoutes.php';
 
 Flight::start();
 ?>
