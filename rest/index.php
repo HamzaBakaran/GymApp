@@ -9,7 +9,7 @@ require_once '../vendor/autoload.php';
 
 require_once 'services/UserService.class.php';
 require_once 'services/MembershipService.class.php';
-require_once 'dao/UserDao.class.php';
+require_once 'Dao/UserDao.class.php';
 
 Flight::register('userDao', 'UserDao');
 Flight::register('userService', 'UserService');
