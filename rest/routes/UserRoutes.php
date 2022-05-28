@@ -4,6 +4,29 @@
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+/**
+* @OA\Post(
+*     path="/login",
+*     description="Login to the system",
+*     tags={"users"},
+*     @OA\RequestBody(description="Basic user info", required=true,
+*       @OA\MediaType(mediaType="application/json",
+*    			@OA\Schema(
+*    				@OA\Property(property="email", type="string", example="hamzabakaran@gmail.com",	description="Email"),
+*    				@OA\Property(property="password", type="string", example="1234",	description="Password" )
+*        )
+*     )),
+*     @OA\Response(
+*         response=200,
+*         description="JWT Token on successful response"
+*     ),
+*     @OA\Response(
+*         response=404,
+*         description="Wrong Password | User doesn't exist"
+*     )
+* )
+*/
+
 Flight::route('POST /login', function(){
     $login = Flight::request()->data->getData();
     $user = Flight::userDao()->get_user_by_email($login['email']);
@@ -11,6 +34,9 @@ Flight::route('POST /login', function(){
     if (isset($user['id'])){
          if($user['password'] == md5($login['password'])){
             unset($user['password']);
+
+            //$user['iat'] = time();
+            //$user['exp'] = $user['iat'] + 60;
            $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
            Flight::json(['token' => $jwt]);
          }else{
@@ -21,7 +47,12 @@ Flight::route('POST /login', function(){
        }
 
 });
-
+/**
+ * @OA\Get(path="/users", tags={"users"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return all user  from the API. ",
+ *         @OA\Response( response=200, description="List of notes.")
+ * )
+ */
 
 /**
 * List all todos
@@ -29,6 +60,13 @@ Flight::route('POST /login', function(){
 Flight::route('GET /users', function(){
   Flight::json(Flight::userService()->get_all());
 });
+/**
+ * @OA\Get(path="/users/{id}", tags={"membership"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of user"),
+ *     @OA\Response(response="200", description="Fetch individual note")
+ * )
+ */
+
 
 /**
 * List invidiual todo

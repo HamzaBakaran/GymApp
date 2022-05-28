@@ -3,7 +3,12 @@
 
 // CRUD operations for todos entity
 
-
+/**
+ * @OA\Get(path="/membership", tags={"membership"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return all user membership from the API. ",
+ *         @OA\Response( response=200, description="List of notes.")
+ * )
+ */
 
 /**
 * List all todos
@@ -15,6 +20,12 @@ Flight::route('GET /membership', function(){
 /**
 * List invidiual todo
 */
+/**
+ * @OA\Get(path="/membership/{id}", tags={"membership"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of membership"),
+ *     @OA\Response(response="200", description="Fetch individual note")
+ * )
+ */
 Flight::route('GET /membership/@id', function($id){
   Flight::json(Flight::membershipService()->get_by_id($id));
 });
