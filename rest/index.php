@@ -3,6 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 require_once '../vendor/autoload.php';
 
@@ -23,7 +25,7 @@ Flight::map('error', function(Exception $ex){
     // Handle error
     Flight::json(['message' => $ex->getMessage()], 500);
 });
-/*
+
 // middleware method for login
 Flight::route('/*', function(){
   //return TRUE;
@@ -45,7 +47,7 @@ Flight::route('/*', function(){
       return FALSE;
     }
   }
-});*/
+});
 
 /* REST API documentation endpoint */
 Flight::route('GET /docs.json', function(){

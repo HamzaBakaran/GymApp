@@ -10,9 +10,19 @@ var UserService = {
     },
 
     list: function(){
-      $.get("rest/users", function(data) {
+    /*  $.get("rest/users", function(data) {
         $("#user-list").html("");
         var html = "";
+        */
+        $.ajax({
+        url: "rest/users",
+        type: "GET",
+        beforeSend: function(xhr){
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
+        success: function(data) {
+          $("#note-list").html("");
+          var html = "";
         for(let i = 0; i < data.length; i++){
           html += `
           <div class="col-lg-3">
@@ -32,6 +42,11 @@ var UserService = {
           `;
         }
         $("#user-list").html(html);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        toastr.error(XMLHttpRequest.responseJSON.message);
+        UserService.logout();
+      }
       });
     },
 

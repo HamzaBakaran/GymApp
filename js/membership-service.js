@@ -20,8 +20,18 @@ var MembershipService = {
 
   list_by_user_id: function(user_id){
     $("#membership-users").html('loading ...');
+    /*
     $.get("rest/user/"+user_id+"/membership", function(data) {
       var html = "";
+      */
+      $.ajax({
+      url: "rest/user/"+user_id+"/membership",
+      type: "GET",
+      beforeSend: function(xhr){
+        xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+      },
+      success: function(data) {
+        var html = "";
       for(let i = 0; i < data.length; i++){
         html += `<div class="list-group-item membership-user-`+data[i].id+`">
           <button class="btn btn-danger btn-sm float-end" onclick="MembershipService.delete(`+data[i].id+`)">delete</button>
@@ -29,6 +39,11 @@ var MembershipService = {
         </div>`;
       }
       $("#membership-user").html(html);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+         toastr.error(XMLHttpRequest.responseJSON.message);
+         UserLoginService.logout();
+       }
     });
 
     // note id populate and form validation
@@ -53,6 +68,9 @@ var MembershipService = {
     $.ajax({
       url: 'rest/membership/'+id,
       type: 'DELETE',
+      beforeSend: function(xhr){
+       xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+     },
       success: function(result) {
         toastr.success("Deleted !");
       },
