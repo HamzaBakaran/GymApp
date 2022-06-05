@@ -63,11 +63,14 @@ var UserService = {
 
     add: function(user){
       $.ajax({
-        url: 'rest/users',
+        url: 'rest/register',
         type: 'POST',
         data: JSON.stringify(user),
         contentType: "application/json",
         dataType: "json",
+        beforeSend: function(xhr){
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
         success: function(result) {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list(); // perf optimization
@@ -103,6 +106,9 @@ var UserService = {
       $.ajax({
         url: 'rest/users/'+id,
         type: 'DELETE',
+        beforeSend: function(xhr){
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
         success: function(result) {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list();

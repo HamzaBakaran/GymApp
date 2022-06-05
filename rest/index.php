@@ -28,12 +28,12 @@ Flight::register('userMembershipService', 'UserMembershipService');
 
 
 
-/*
+
 Flight::map('error', function(Exception $ex){
     // Handle error
     Flight::json(['message' => $ex->getMessage()], 500);
 });
-*/
+
 
 
 // middleware method for login
