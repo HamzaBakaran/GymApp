@@ -6,7 +6,7 @@
 /**
  * @OA\Get(path="/membership", tags={"membership"}, security={{"ApiKeyAuth": {}}},
  *         summary="Return all user membership from the API. ",
- *         @OA\Response( response=200, description="List of notes.")
+ *         @OA\Response( response=200, description="List of mebership.")
  * )
  */
 
@@ -42,10 +42,9 @@ Flight::route('GET /membership/@id', function($id){
 *     @OA\RequestBody(description="Basic user info", required=true,
 *       @OA\MediaType(mediaType="application/json",
 *    			@OA\Schema(
-*    				@OA\Property(property="name", type="string", example="Novi User",	description="Name"),
-*    				@OA\Property(property="description", type="string", example="bla bla",	description="description"),
-*    				@OA\Property(property="email", type="string", example="hamzabakaran@gmail.com",	description="Email"),
-*    				@OA\Property(property="password", type="string", example="81dc9bdb52d04dc20036dbd8313ed055",	description="Password" )
+*    				@OA\Property(property="description", type="string", example="test",	description="description"),
+*    				@OA\Property(property="price", type="double", example="50",	description="description"),
+*
 *        )
 *     )),
 *     @OA\Response(
@@ -65,17 +64,55 @@ Flight::route('POST /membership', function(){
 /**
 * update todo
 */
+/**
+* @OA\Put(
+*     path="/membership/{id}", security={{"ApiKeyAuth": {}}},
+*     description="Update user note",
+*     tags={"membership"},
+*     @OA\Parameter(in="path", name="id", example=1, description="Note ID"),
+*     @OA\RequestBody(description="Basic note info", required=true,
+*       @OA\MediaType(mediaType="application/json",
+*    			@OA\Schema(
+*    				@OA\Property(property="description", type="string", example="test",	description="description"),
+*    				@OA\Property(property="price", type="double", example="50",	description="description"),
+*        )
+*     )),
+*     @OA\Response(
+*         response=200,
+*         description="Note that has been updated"
+*     ),
+*     @OA\Response(
+*         response=500,
+*         description="Error"
+*     )
+* )
+*/
 Flight::route('PUT /membership/@id', function($id){
   $data = Flight::request()->data->getData();
-  $data['id'] = $id;
-  Flight::json(Flight::MemberDao()->update($data));
+  Flight::json(Flight::membershipService()->update(Flight::get('user'), $id, $data));
 });
+/**
+* @OA\Delete(
+*     path="/membership/{id}", security={{"ApiKeyAuth": {}}},
+*     description="Delete ",
+*     tags={"membership"},
+*     @OA\Parameter(in="path", name="id", example=5, description="Membership ID"),
+*     @OA\Response(
+*         response=200,
+*         description="Membership deleted"
+*     ),
+*     @OA\Response(
+*         response=500,
+*         description="Error"
+*     )
+* )
+*/
 
 /**
 * delete todo
 */
 Flight::route('DELETE /membership/@id', function($id){
-  Flight::MembersshipDao()->delete($id);
+  Flight::membershipService()->delete($id);
   Flight::json(["message" => "deleted"]);
 });
 

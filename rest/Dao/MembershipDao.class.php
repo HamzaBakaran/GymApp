@@ -12,7 +12,14 @@ class MembershipDao extends BaseDao{
   public function get_membership_by_user_id($user_id){
     return $this->query("SELECT * FROM membership WHERE user_id = :user_id", ['user_id' => $user_id]);
   }
+  public function delete($id){
+    parent::delete($id);
 
+  }
+    public function update($id, $entity, $id_column = "id"){
+      parent::update($id, $entity, $id_column = "id");
+
+    }
 }
 
 ?>

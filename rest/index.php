@@ -12,26 +12,36 @@ require_once '../vendor/autoload.php';
 require_once 'services/UserService.class.php';
 require_once 'services/MembershipService.class.php';
 require_once 'Dao/UserDao.class.php';
+require_once 'services/EmployeService.class.php';
+require_once 'Dao/MembershipDao.class.php';
+require_once 'Dao/UserMembershipDao.class.php';
+require_once 'services/UserMembershipService.class.php';
 
 Flight::register('userDao', 'UserDao');
 Flight::register('userService', 'UserService');
 Flight::register('membershipService', 'MembershipService');
+Flight::register('employeService', 'EmployeService');
+Flight::register('membershipDao', 'MembershipDao');
+Flight::register('userMembershipDao', 'UserMembershipDao');
+Flight::register('userMembershipService', 'UserMembershipService');
 
 
 
 
-
+/*
 Flight::map('error', function(Exception $ex){
     // Handle error
     Flight::json(['message' => $ex->getMessage()], 500);
 });
+*/
+
 
 // middleware method for login
 Flight::route('/*', function(){
   //return TRUE;
   //perform JWT decode
   $path = Flight::request()->url;
-  if ($path == '/login' || $path == '/docs.json') return TRUE; // exclude login route from middleware
+  if ($path == '/login' || $path == '/docs.json' || $path == '/membership' || $path == '/register') return TRUE; // exclude login route from middleware
 
   $headers = getallheaders();
   if (@!$headers['Authorization']){
@@ -60,6 +70,8 @@ Flight::route('GET /docs.json', function(){
 
 require_once './routes/UserRoutes.php';
 require_once 'routes/MembershipRoutes.php';
+require_once 'routes/EmployeRoutes.php';
+require_once 'routes/UserMembershipRoutes.php';
 
 
 Flight::start();

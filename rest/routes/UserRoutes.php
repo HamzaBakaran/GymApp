@@ -13,7 +13,7 @@ use Firebase\JWT\Key;
 *       @OA\MediaType(mediaType="application/json",
 *    			@OA\Schema(
 *    				@OA\Property(property="email", type="string", example="hamzabakaran@gmail.com",	description="Email"),
-*    				@OA\Property(property="password", type="string", example="1234",	description="Password" )
+*    				@OA\Property(property="password", type="string", example="123",	description="Password" )
 *        )
 *     )),
 *     @OA\Response(
@@ -61,7 +61,7 @@ Flight::route('GET /users', function(){
   Flight::json(Flight::userService()->get_all());
 });
 /**
- * @OA\Get(path="/users/{id}", tags={"membership"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Get(path="/users/{id}", tags={"users"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(in="path", name="id", example=1, description="Id of user"),
  *     @OA\Response(response="200", description="Fetch individual note")
  * )
@@ -80,7 +80,7 @@ Flight::route('GET /users/@id', function($id){
 */
 /**
 * @OA\Post(
-*     path="/users",
+*     path="/register",
 *     description="Proba",
 *     tags={"users"},
 *     @OA\RequestBody(description="Basic user info", required=true,
@@ -102,7 +102,7 @@ Flight::route('GET /users/@id', function($id){
 *     )
 * )
 */
-Flight::route('POST /users', function(){
+Flight::route('POST /register', function(){
   Flight::json(Flight::userService()->add(Flight::request()->data->getData()));
 });
 
