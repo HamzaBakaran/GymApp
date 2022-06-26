@@ -16,10 +16,9 @@ class MembershipDao extends BaseDao{
     parent::delete($id);
 
   }
-    public function update($id, $entity, $id_column = "id"){
-      parent::update($id, $entity, $id_column = "id");
-
-    }
 }
+
+
+
 
 ?>

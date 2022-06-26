@@ -8,6 +8,9 @@ class UserMembershipService extends BaseService{
   public function __construct(){
     parent::__construct(new UserMembershipDao());
   }
+  public function  get_users_membership_by_id($user_id){
+    return $this->dao-> get_users_membership_by_id($user_id);
+  }
 
 
 }

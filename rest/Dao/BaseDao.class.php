@@ -77,7 +77,7 @@ class BaseDao{
 
   public function update($id, $entity, $id_column = "id"){
     $query = "UPDATE ".$this->table_name." SET ";
-    foreach($entity as $name => $value){
+    foreach((array)$entity as $name => $value){
       $query .= $name ."= :". $name. ", ";
     }
     $query = substr($query, 0, -2);

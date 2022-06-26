@@ -1,11 +1,13 @@
 <?php
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 
 // CRUD operations for todos entity
 
 /**
  * @OA\Get(path="/membership", tags={"membership"}, security={{"ApiKeyAuth": {}}},
- *         summary="Return all user membership from the API. ",
+ *         summary="Return all  membership from the API. ",
  *         @OA\Response( response=200, description="List of mebership.")
  * )
  */
@@ -90,6 +92,7 @@ Flight::route('POST /membership', function(){
 Flight::route('PUT /membership/@id', function($id){
   $data = Flight::request()->data->getData();
   Flight::json(Flight::membershipService()->update(Flight::get('user'), $id, $data));
+
 });
 /**
 * @OA\Delete(

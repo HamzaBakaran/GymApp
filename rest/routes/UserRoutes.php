@@ -36,7 +36,7 @@ Flight::route('POST /login', function(){
             unset($user['password']);
 
             //$user['iat'] = time();
-            //$user['exp'] = $user['iat'] + 60;
+            //$user['exp'] = $user['iat'] + 20;
            $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
            Flight::json(['token' => $jwt]);
          }else{
@@ -109,14 +109,56 @@ Flight::route('POST /register', function(){
 /**
 * update todo
 */
+/**
+* @OA\Put(
+*     path="/users/{id}", security={{"ApiKeyAuth": {}}},
+*     description="Update user",
+*     tags={"users"},
+*     @OA\Parameter(in="path", name="id", example=1, description="Note ID"),
+*     @OA\RequestBody(description="Basic note info", required=true,
+*       @OA\MediaType(mediaType="application/json",
+*    			@OA\Schema(
+*    				@OA\Property(property="name", type="string", example="Novi User",	description="Name"),
+*    				@OA\Property(property="description", type="string", example="bla bla",	description="description"),
+*    				@OA\Property(property="email", type="string", example="hamzabakaran@gmail.com",	description="Email"),
+*    				@OA\Property(property="password", type="string", example="81dc9bdb52d04dc20036dbd8313ed055",	description="Password" )
+*        )
+*     )),
+*     @OA\Response(
+*         response=200,
+*         description="Note that has been updated"
+*     ),
+*     @OA\Response(
+*         response=500,
+*         description="Error"
+*     )
+* )
+*/
 Flight::route('PUT /users/@id', function($id){
   $data = Flight::request()->data->getData();
-  $data['id'] = $id;
-  Flight::json(Flight::userService()->update($data));
+  //$data['id'] = $id;
+  Flight::json(Flight::userService()->update(Flight::get('user'), $id, $data));;
+
 });
 
 /**
 * delete todo
+*/
+/**
+* @OA\Delete(
+*     path="/users/{id}", security={{"ApiKeyAuth": {}}},
+*     description="Delete ",
+*     tags={"users"},
+*     @OA\Parameter(in="path", name="id", example=5, description="User ID"),
+*     @OA\Response(
+*         response=200,
+*         description="User deleted"
+*     ),
+*     @OA\Response(
+*         response=500,
+*         description="Error"
+*     )
+* )
 */
 Flight::route('DELETE /users/@id', function($id){
   Flight::userService()->delete($id);
