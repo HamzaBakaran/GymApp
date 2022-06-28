@@ -19,7 +19,7 @@ var MembershipService = {
   },
 
   list_by_user_id: function(user_id){
-    $("#membership-users").html('loading ...');
+    $("#users").html('loading ...');
     /*
     $.get("rest/user/"+user_id+"/membership", function(data) {
       var html = "";
@@ -38,7 +38,7 @@ var MembershipService = {
           <p class="list-group-item-text">`+data[i].description+`</p>
         </div>`;
       }
-      $("#membership-user").html(html);
+      $("#usesr").html(html);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
          toastr.error(XMLHttpRequest.responseJSON.message);

@@ -74,32 +74,31 @@ var UserService = {
         success: function(result) {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list(); // perf optimization
-            $("#addNoteModal").modal("hide");
+            $("#addUserModal").modal("hide");
+            toastr.success("User added!");
         }
       });
     },
 
-    update: function(){
-      $('.save-user-button').attr('disabled', true);
-      var user = {};
-
-      user.description = $('#description').val();
-      user.created = $('#created').val();
-
-      $.ajax({
-        url: 'rest/users/'+$('#id').val(),
-        type: 'PUT',
-        data: JSON.stringify(user),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(result) {
-            $("#exampleModal").modal("hide");
-            $('.save-user-button').attr('disabled', false);
-            $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
-            MembershipService.list(); // perf optimization
-        }
-      });
+    update: function(id, entity){
+  $.ajax({
+    url: 'rest/users/'+id,
+    type: 'PUT',
+    beforeSend: function(xhr){
+      xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
     },
+    data: JSON.stringify(entity),
+    contentType: "application/json",
+    dataType: "json",
+    success: function(result) {
+        $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
+        MembershipService.list(); // perf optimization
+        $("#addUserModal").modal("hide");
+        toastr.success("User updated!");
+    }
+  });
+},
+
 
     delete: function(id){
       $('.user-button').attr('disabled', true);
@@ -112,6 +111,7 @@ var UserService = {
         success: function(result) {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list();
+            toastr.success("Note deleted!");
         }
       });
     },

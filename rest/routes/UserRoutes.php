@@ -138,7 +138,7 @@ Flight::route('PUT /users/@id', function($id){
   $data = Flight::request()->data->getData();
   //$data['id'] = $id;
   Flight::json(Flight::userService()->update(Flight::get('user'), $id, $data));;
-
+  
 });
 
 /**
