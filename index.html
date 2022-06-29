@@ -10,6 +10,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/jQuerySPApp.css" />
   <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
 
@@ -52,13 +53,13 @@
             </a>
           </li>
           <li class="nav-item bg-dark">
-            <a class="nav-link text-light bg-dark" href="memberships.html">
+            <a class="nav-link text-light bg-dark" href="#users">
               <span data-feather="file"></span>
               Users
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light bg-dark" href="#">
+            <a class="nav-link text-light bg-dark" href="#memberships">
               <span data-feather="shopping-cart" ></span>
               Memberships
             </a>
@@ -72,7 +73,7 @@
 
 
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light bg-dark">
+     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light bg-dark">
           <span></span>
           <a class="link-secondary text-light bg-dark" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
@@ -107,14 +108,17 @@
       </div>
     </nav>
 
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="jqueryspapp" role="main">
+         <section id="dashboard" data-load="dashboard.html" ></section>
+         <section id="users" ></section>
+         <section id="memberships" ></section>
 
 
 
 
 
 
-
-
+<!--
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
@@ -123,7 +127,7 @@
 
       </div>
       <div class="container marketing" style="margin-top:10px;">
-      <!-- Three columns of text below the carousel -->
+
       <div class="row">
         <div>
 
@@ -134,13 +138,14 @@
         <div class="spinner-border" role="status">
           <span class="sr-only"></span>
         </div>
-      </div><!-- /.row -->
+      </div>
     </div>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
 
     </main>
+  -->
   </div>
 </div>
 
@@ -148,6 +153,8 @@
 
   </body>
   <script src="js/jquery-3.6.0.min.js"></script>
+
+   <script src="js/jQuerySPApp.js"></script>
 
 <script src="js/bootstrap.bundle.min.js"></script>
 
@@ -274,6 +281,33 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+   $(document).ready(function() {
+     var app = $.jQuerySPApp({
+     defaultView  : "dashboard",
+     templateDir  : "./views/",
+     pageNotFound : "error_404"}); // initialize
+
+     // define routes
+     app.route({
+       view: 'dashboard',
+       onCreate: function() { UserService.init();},
+       onReady: function() {UserService.init(); }
+     });
+     app.route({view: 'users', load: 'users.html',
+     onCreate: function() { UserService.init();},
+     onReady: function() {UserService.init(); }
+    });
+    app.route({view: 'memberships', load: 'memberships.html',
+    onCreate: function() { MembershiService.init();},
+    onReady: function() {MemmbershipService.init(); }
+   });
+
+
+     // run app
+     app.run();
+   });
+ </script>
 
 <script>
 
@@ -281,6 +315,7 @@
 var token = localStorage.getItem("token");
   if (token){
     UserService.init();
+    
   }else{
     window.location.replace("login.html");
   }
