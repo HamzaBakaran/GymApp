@@ -1,6 +1,85 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Proba</h1>
+  <h1 class="h2">Users</h1>
   <button class="btn btn-success btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addUserModal">Add new user</button>
+  <script src="js/jquery-3.6.0.min.js"></script>
+
+   <script src="js/jQuerySPApp.js"></script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="js/jquery.validate.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="js/user-service.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input id="id" type="hidden" />
+        <input id="description" type="text" />
+        <input id="created" type="hidden" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save-todo-button" onclick="saveUser()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addUserForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label>Name</label>
+              <input name="name" type="text" class="form-control required" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input name="description" type="text" class="form-control required" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label>email</label>
+              <input name="email" type="text" class="form-control required" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label>password</label>
+              <input name="password" type="text" class="form-control required" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <input name="color" value="white" type="hidden" class="form-control required" placeholder="Enter color">
+              <div class="form-control btn-group" role="group" aria-label="Basic example">
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Created</label>
+              <input name="created" type="date" class="form-control required" placeholder="Created date">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
 </div>
@@ -20,3 +99,13 @@
 </div>
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+<script>
+  var token = localStorage.getItem("token");
+    if (token){
+      UserService.init();
+
+    }else{
+      window.location.replace("login.html");
+    }
+  
+</script>

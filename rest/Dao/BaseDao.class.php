@@ -93,6 +93,11 @@ class BaseDao{
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+  protected function query_single($query){
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 
   protected function query_unique($query, $params){
     $results = $this->query($query, $params);

@@ -16,7 +16,7 @@ use Firebase\JWT\Key;
 * List all todos
 */
 Flight::route('GET /usermembership', function(){
-  Flight::json(Flight::userMembershipService()->get_all());
+  Flight::json(Flight::userMembershipService()->get_users_membership());
 });
 /**
  * @OA\Get(path="/usermembership/{id}", tags={"usermembership"}, security={{"ApiKeyAuth": {}}},

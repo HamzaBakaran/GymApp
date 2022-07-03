@@ -138,7 +138,7 @@ Flight::route('PUT /users/@id', function($id){
   $data = Flight::request()->data->getData();
   //$data['id'] = $id;
   Flight::json(Flight::userService()->update(Flight::get('user'), $id, $data));;
-  
+
 });
 
 /**
@@ -163,6 +163,19 @@ Flight::route('PUT /users/@id', function($id){
 Flight::route('DELETE /users/@id', function($id){
   Flight::userService()->delete($id);
   Flight::json(["message" => "deleted"]);
+});
+/**
+ * @OA\Get(path="/userscount", tags={"users"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return users count ",
+ *         @OA\Response( response=200, description="users count")
+ * )
+ */
+
+/**
+* List all todos
+*/
+Flight::route('GET /userscount', function(){
+  Flight::json(Flight::userService()->get_user_count());
 });
 
 

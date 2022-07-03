@@ -21,7 +21,7 @@ var UserService = {
           xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
         },
         success: function(data) {
-          $("#note-list").html("");
+          $("#user-list").html("");
           var html = "";
         for(let i = 0; i < data.length; i++){
           html += `
@@ -92,7 +92,7 @@ var UserService = {
     dataType: "json",
     success: function(result) {
         $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
-        MembershipService.list(); // perf optimization
+        UserService.list(); // perf optimization
         $("#addUserModal").modal("hide");
         toastr.success("User updated!");
     }
@@ -111,7 +111,7 @@ var UserService = {
         success: function(result) {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list();
-            toastr.success("Note deleted!");
+            toastr.success("User deleted!");
         }
       });
     },
@@ -119,4 +119,5 @@ var UserService = {
     choose_color: function(color){
       $('#addNoteForm input[name="color"]').val(color);
     }
+
 }

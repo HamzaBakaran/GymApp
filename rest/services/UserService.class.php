@@ -8,6 +8,9 @@ class UserService extends BaseService{
   public function __construct(){
     parent::__construct(new UserDao());
   }
+  public function  get_user_count(){
+    return $this->dao-> get_user_count();
+  }
 
 
 }

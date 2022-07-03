@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Memberships 2</h1>
+  <h1 class="h2">Memberships </h1>
 
+  <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+<script src="./js/membership-service.js"></script>
 
 </div>
 <div class="container marketing" style="margin-top:10px;">
@@ -13,11 +15,13 @@
 </div>
 
 
-<table id="membership-table" class="table table-dark table-striped">
+<table id="membership-table-list" class="table table-dark table-striped">
+  <thead id ="membership-table">
   <tr>
 
-   <th>User ID</th>
-   <th>MembershipID</th>
+   <th> ID</th>
+    <th> Name</th>
+   <th>Description</th>
    <th>Start date</th>
    <th>End date</th>
  </tr>
@@ -28,3 +32,14 @@
 </div>
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+<script>
+  var token = localStorage.getItem("token");
+    if (token){
+      MembershipService.init();;
+
+    }else{
+      window.location.replace("login.html");
+    }
+
+
+</script>

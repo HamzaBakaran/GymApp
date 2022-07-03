@@ -1,16 +1,16 @@
-var MembershipService = {
+var DashboardService = {
         init: function(){
-          MembershipService.list();
+          DashboardService.count();
 
         },
 
-        list: function(){
+        count: function(){
         /*  $.get("rest/users", function(data) {
             $("#user-list").html("");
             var html = "";
             */
             $.ajax({
-            url: "rest/usermembership",
+            url: "rest/userscount",
             type: "GET",
             beforeSend: function(xhr){
               xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
@@ -19,16 +19,13 @@ var MembershipService = {
               //$("#membership-table").html("");
               var html = "";
             for(let i = 0; i < data.length; i++){
-              html += `<tr>
-                                      <th>`+data[i].id+` </th>
-                                      <th>`+data[i].name+` </th>
-                                      <th>`+data[i].description+` </th>
-                                      <th>`+data[i].start_date+`</th>
-                                      <th>`+data[i].end_date+`</th>
-                                    </tr>`;
+              html += `<div class="text-info text-center mt-2" id="count"><h1>`+data[i].count+`</h1></div>
+
+
+                                    `;
             }
-            let oldHtml = $("#membership-table").html();
-            $("#membership-table").html(oldHtml+html);
+            let oldHtml = $("#count").html();
+            $("#count").html(oldHtml+html);
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
             toastr.error(XMLHttpRequest.responseJSON.message);
@@ -37,4 +34,3 @@ var MembershipService = {
           });
         },
         }
-          
