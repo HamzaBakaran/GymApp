@@ -177,6 +177,20 @@ Flight::route('DELETE /users/@id', function($id){
 Flight::route('GET /userscount', function(){
   Flight::json(Flight::userService()->get_user_count());
 });
+/**
+ * @OA\Get(path="/usersactive", tags={"users"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return users active count ",
+ *         @OA\Response( response=200, description="users active count")
+ * )
+ */
+
+/**
+* List all todos
+*/
+Flight::route('GET /usersactive', function(){
+  Flight::json(Flight::userMembershipService()->get_users_active());
+});
+
 
 
 ?>

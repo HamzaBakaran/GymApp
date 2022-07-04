@@ -115,6 +115,19 @@ Flight::route('DELETE /usermembership/@id', function($id){
   Flight::userMembershipService()->delete($id);
   Flight::json(["message" => "deleted"]);
 });
+/**
+ * @OA\Get(path="/earned", tags={"users"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return users active count ",
+ *         @OA\Response( response=200, description="Earned last 30 days")
+ * )
+ */
+
+/**
+* List all todos
+*/
+Flight::route('GET /earned', function(){
+  Flight::json(Flight::userMembershipService()->get_earned());
+});
 
 
 
