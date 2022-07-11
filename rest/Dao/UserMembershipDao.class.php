@@ -17,9 +17,9 @@ class UserMembershipDao extends BaseDao{
        return $this->query_single($query);
     }
     public function get_users_active(){
-       $query="SELECT COUNT(id) as id
- FROM users_membership
-WHERE end_date>CURRENT_DATE  ";
+       $query=" SELECT COUNT(id) as id
+                FROM users_membership
+                WHERE end_date>CURRENT_DATE  ";
         return $this->query_single($query);
      }
      public function get_earned(){

@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Dashboard</h1>
+  <h1 class="h2 ">Dashboard</h1>
 
 
   <script src="./js/dashboard-service.js"></script>
@@ -15,7 +15,7 @@
 </div>
 
 
-<!------ Include the above in your HEAD tag ---------->
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
 ">
@@ -24,34 +24,44 @@
 <div class="row w-100">
         <div class="col-md-3">
             <div class="card border-info mx-sm-1 p-3">
-                <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-users"</span></div>
+                <div class="card border-info shadow text-info text-center p-3 my-card" ><span class="fa fa-users"</span></div>
                 <div class="text-info text-center mt-3"><h4>Total users</h4></div>
                 <div class="text-info text-center mt-2" id="count"><h1></h1></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-success mx-sm-1 p-3">
-                <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
+                <div class="card border-success shadow text-success text-center p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
                 <div class="text-success text-center mt-3"><h4>Active users</h4></div>
                 <div class="text-success text-center mt-2" id="active"><h1></h1></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-dark mx-sm-1 p-3">
-                <div class="card border-danger shadow text-dark p-3 my-card" ><span class="fa fa-money" aria-hidden="true"></span></div>
+                <div class="card border-dark shadow text-dark text-center p-3 my-card" ><span class="fa fa-money" aria-hidden="true"></span></div>
                 <div class="text-dark text-center mt-3"><h4>Earned</h4></div>
                 <div class="text-dark text-center mt-2" id="earned"><h1></h1></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-warning mx-sm-1 p-3">
-                <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-money" aria-hidden="true"></span></div>
-                <div class="text-warning text-center mt-3"><h4>Inbox</h4></div>
-                <div class="text-warning text-center mt-2"><h1>346</h1></div>
+                <div class="card border-warning shadow text-warning text-center p-3 my-card" ><span class="fa fa-users" aria-hidden="true"></span></div>
+                <div class="text-warning text-center mt-3"><h4>Employes active</h4></div>
+                <div class="text-warning text-center mt-2" id="employes"><h1></h1></div>
             </div>
         </div>
      </div>
 </div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2 ">Recents</h1>
+
+
+
+
+
+</div>
+
+
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 <script>

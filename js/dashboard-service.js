@@ -3,6 +3,7 @@ var DashboardService = {
           DashboardService.count();
           DashboardService.active();
           DashboardService.earned();
+          DashboardService.employes_active();
         },
 
         count: function(){
@@ -87,6 +88,36 @@ var DashboardService = {
             }
             let oldHtml = $("#earned").html();
             $("#earned").html(oldHtml+html);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            toastr.error(XMLHttpRequest.responseJSON.message);
+
+          }
+          });
+        },
+        employes_active: function(){
+        /*  $.get("rest/users", function(data) {
+            $("#user-list").html("");
+            var html = "";
+            */
+            $.ajax({
+            url: "rest/employes_active",
+            type: "GET",
+            beforeSend: function(xhr){
+              xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+            },
+            success: function(data) {
+              //$("#membership-table").html("");
+              var html = "";
+            for(let i = 0; i < data.length; i++){
+              html += `<div class="text-warning text-center mt-2" id="employes"> <h1>`+data[i].employes+` </h1></div>
+
+
+
+                                    `;
+            }
+            let oldHtml = $("#employes").html();
+            $("#employes").html(oldHtml+html);
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
             toastr.error(XMLHttpRequest.responseJSON.message);

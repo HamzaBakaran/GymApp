@@ -108,6 +108,18 @@ Flight::route('DELETE /employe/@id', function($id){
   Flight::employeService()->delete($id);
   Flight::json(["message" => "deleted"]);
 });
+/**
+ * @OA\Get(path="/employes_active", tags={"employe"}, security={{"ApiKeyAuth": {}}},
+ *         summary="Return employe active count ",
+ *         @OA\Response( response=200, description="Empoye active count")
+ * )
+ */
+
+
+
+Flight::route('GET /employes_active', function(){
+  Flight::json(Flight::employeService()->get_employe_count());
+});
 
 
 
