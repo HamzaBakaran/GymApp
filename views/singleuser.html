@@ -1,8 +1,29 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2 ">Dashboard</h1>
+  <h1 class="h2 "> User Dashboard</h1>
 
+  <button class="btn btn-outline-light text-light bg-dark" type="button" onclick="doLogout()">Logout</button>
 
-  <script src="./js/dashboard-service.js"></script>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jQuerySPApp.css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<script src="../js/util.js"></script>
+
+  <script src="../js/jquery-3.6.0.min.js"></script>
+
+   <script src="../js/jQuerySPApp.js"></script>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+
+<script src="../js/jquery.validate.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
 
@@ -83,6 +104,7 @@
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 <script>
+  /*
   var token = localStorage.getItem("token");
     if (token){
       DashboardService.init();
@@ -93,6 +115,10 @@
     $(document).ready(function () {
   $('#membership-table-list').DataTable();
 });
-
+*/
+function doLogout(){
+            window.localStorage.clear();
+            window.location = "../login.html";
+          }
 
 </script>

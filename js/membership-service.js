@@ -68,14 +68,14 @@ var MembershipService = {
                 xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
               },
               success: function(result) {
-                  $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
+                  $("#membership-table-full-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
                   MembershipService.list(); // perf optimization
                   $("#addMembershipModal").modal("hide");
                   toastr.success("Membership added!");
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
                 toastr.error(XMLHttpRequest.responseJSON.message);
-                
+
               }
             });
           },
@@ -94,4 +94,5 @@ var MembershipService = {
             }
           });
         },
+      
         }
