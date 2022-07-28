@@ -7,6 +7,8 @@ var UserService = {
         }
       });
       UserService.list();
+      
+
     },
 
     list: function(){
@@ -116,8 +118,6 @@ var UserService = {
       });
     },
 
-    choose_color: function(color){
-      $('#addNoteForm input[name="color"]').val(color);
-    }
+
 
 }

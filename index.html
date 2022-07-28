@@ -69,7 +69,7 @@
             </a>
           </li>
           <li class="nav-item  bg-dark">
-            <a class="nav-link text-light bg-dark" href="#">
+            <a class="nav-link text-light bg-dark" href="#employes">
               <span data-feather="users" class="fa-regular fa-user"></span>
               Employes
             </a>
@@ -116,6 +116,7 @@
          <section id="dashboard" data-load="dashboard.html" ></section>
          <section id="users" ></section>
          <section id="memberships" ></section>
+         <section id="employes" ></section>
 
 
 
@@ -243,6 +244,10 @@
     onCreate: function() { MembershiService.init();},
     onReady: function() {MemmbershipService.init(); }
    });
+   app.route({view: 'employes', load: 'employes.html',
+   onCreate: function() { },
+   onReady: function() { }
+  });
 
 
      // run app

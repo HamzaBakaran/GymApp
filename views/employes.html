@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Employes </h1>
+  <button class="btn btn-light btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addMembershipModal">Add new membership</button>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
+  ">
+
+<script src="./js/membership-service.js"></script>
+<div class="modal fade" id="addMembershipModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addMembershipForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Add new membership</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label>Users ID</label>
+              <input name="user_id" type="number" class="form-control required" placeholder="Enter user ID">
+            </div>
+            <div class="form-group">
+              <label>Membership ID</label>
+              <input name="membership_id" type="number" class="form-control required" placeholder="Enter membership ID">
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input name="start_date" type="date" class="form-control required" placeholder="Enter start date">
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <input name="end_date" type="date" class="form-control required" placeholder="Enter end date">
+            </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</div>
+<div class="container marketing" style="margin-top:10px;">
+
+<div class="row">
+  <div>
+
+  </div>
+</div>
+
+
+
+
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered" id="membership-table-full">
+        <thead id="membership-table-full-list">
+
+          <tr>
+            <th class="bg-dark text-light">ID</th>
+            <th class="bg-dark text-light">Name</th>
+            <th class="bg-dark text-light">description</th>
+            <th class="bg-dark text-light">Start Date</th>
+            <th class="bg-dark text-light">End Date</th>
+            <th class="bg-dark text-light">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+<script>
+
+
+
+</script>

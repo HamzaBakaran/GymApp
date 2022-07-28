@@ -32,7 +32,7 @@ Flight::route('POST /login', function(){
     $user = Flight::userDao()->get_user_by_email($login['email']);
 
     if (isset($user['id'])){
-         if($user['password'] == md5($login['password'])){
+         if($user['password'] == $login['password']){
             unset($user['password']);
 
             //$user['iat'] = time();
@@ -189,6 +189,20 @@ Flight::route('GET /userscount', function(){
 */
 Flight::route('GET /usersactive', function(){
   Flight::json(Flight::userMembershipService()->get_users_active());
+});
+/**
+ * @OA\Get(path="/last_active/{id}", tags={"usermembership"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of user"),
+ *     @OA\Response(response="200", description="Fetch individual note")
+ * )
+ */
+
+
+/**
+* List invidiual todo
+*/
+Flight::route('GET /last_active/@id', function($id){
+  Flight::json(Flight::userService()->get_last_active_membership($id));
 });
 
 

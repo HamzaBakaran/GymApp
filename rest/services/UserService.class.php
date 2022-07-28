@@ -11,6 +11,9 @@ class UserService extends BaseService{
   public function  get_user_count(){
     return $this->dao-> get_user_count();
   }
+  public function  get_last_active_membership($id){
+    return $this->dao-> get_last_active_membership($id);
+  }
 
 
 
