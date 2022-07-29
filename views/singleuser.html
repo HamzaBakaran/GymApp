@@ -28,6 +28,7 @@
 
 <script src="../js/user-dashboard-service.js"></script>
 
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -56,7 +57,7 @@
             <div class="card border-info mx-sm-1 p-3">
                 <div class="card border-info shadow text-info text-center p-3 my-card" ><span class="fa fa-users"</span></div>
                 <div class="text-info text-center mt-3"><h4>End Date</h4></div>
-                <div class="text-success text-center mt-2" id="end"><h1></h1></div>
+                <div class="text-success text-center mt-2" id="end"><p></p></div>
             </div>
         </div>
         <div class="col-md-3">
@@ -132,6 +133,15 @@
     window.location.replace("../login.html");
   }
   */
+  var token = localStorage.getItem("token");
+    if (token){
+      UserDashboardService.init();;
+
+    }else{
+      window.location.replace("../login.html");
+    }
+
+
 function doLogout(){
             window.localStorage.clear();
             window.location = "../login.html";

@@ -17,7 +17,8 @@ class UserDao extends BaseDao{
 FROM users");
     }
     public function get_last_active_membership($id){
-       return $this->query_unique(" SELECT end_date FROM users_membership
+       return $this->query_unique(" SELECT DATE_FORMAT(end_date,'%d/%m/%Y') as end_date,user_id
+                                    FROM users_membership
                                     WHERE user_id= :id
                                     ORDER BY end_date DESC
                                     LIMIT 1", ['id' => $id]);

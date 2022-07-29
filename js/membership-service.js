@@ -71,6 +71,7 @@ var MembershipService = {
                   $("#membership-table-full-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
                   MembershipService.list(); // perf optimization
                   $("#addMembershipModal").modal("hide");
+                    $('.modal-backdrop').remove();
                   toastr.success("Membership added!");
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -94,5 +95,5 @@ var MembershipService = {
             }
           });
         },
-      
+
         }

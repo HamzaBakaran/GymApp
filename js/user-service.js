@@ -7,7 +7,7 @@ var UserService = {
         }
       });
       UserService.list();
-      
+
 
     },
 
@@ -77,6 +77,7 @@ var UserService = {
             $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             UserService.list(); // perf optimization
             $("#addUserModal").modal("hide");
+            $('.modal-backdrop').remove();
             toastr.success("User added!");
         }
       });
