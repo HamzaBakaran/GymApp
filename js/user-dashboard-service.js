@@ -7,10 +7,6 @@ var UserDashboardService = {
         },
 
         last: function(){
-          /*  $.get("rest/users", function(data) {
-              $("#user-list").html("");
-              var html = "";
-              */
               $.ajax({
               url: '../rest/last_active/'+ parse_jwt(localStorage.getItem('token')).id,
               type: "GET",
@@ -21,10 +17,13 @@ var UserDashboardService = {
                 //$("#membership-table").html("");
                 var html = "";
               for(let i = 0; i < data.length; i++){
+              
                 html += `<div class="text-info text-center mt-2" id="end"><p>`+data[i].user_id+`</p></div>
 
 
                                       `;
+
+
               }
               let oldHtml = $("#end").html();
               $("#end").html(oldHtml+html);
