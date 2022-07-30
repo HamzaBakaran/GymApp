@@ -1,18 +1,47 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>HBGymDB</title>
 
-  <h1 class="h2 "> User Dashboard</h1>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
-  <button class="btn btn-outline-light text-light bg-dark" type="button" onclick="doLogout()">Logout</button>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <link rel="stylesheet" href="../css/jQuerySPApp.css" />
 
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/jQuerySPApp.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
 
-<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
+
+</head>
+<body>
+
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"></a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#dashboard" >HB GYM</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+         <button class="btn btn-outline-light text-light bg-dark" type="button" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+
 
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
@@ -74,7 +103,7 @@
                 <div class="text-dark text-center mt-2" id="membership_name"><h1></h1></div>
             </div>
         </div>
-        
+
      </div>
 </div>
 
@@ -142,3 +171,4 @@ function doLogout(){
           }
 
 </script>
+</html>
