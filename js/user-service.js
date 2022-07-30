@@ -3,10 +3,20 @@ var UserService = {
       $('#addUserForm').validate({
         submitHandler: function(form) {
           var entity = Object.fromEntries((new FormData(form)).entries());
-          UserService.add(entity);
-        }
-      });
-      UserService.list();
+          if (!isNaN(entity.id)){
+           // update method
+           var id = entity.id;
+           delete entity.id;
+           UserService.update(id, entity);
+         }else{
+           // add method
+           UserService.add(entity);
+         }
+       }
+
+     });
+     UserService.list();
+
 
 
     },
@@ -34,9 +44,8 @@ var UserService = {
                 <h5 class="card-title">`+ data[i].name +`</h5>
                 <p class="card-text">`+ data[i].description +`</p>
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary note-button" onclick="UserService.get(`+data[i].id+`)">Edit</button>
-                  <button type="button" class="btn btn-success note-button" onclick="get_membership_by_user_id(`+data[i].id+`)">Manage</button>
-                  <button type="button" class="btn btn-danger note-button" onclick="UserService.delete(`+data[i].id+`)">Delete</button>
+                  <button type="button" class="btn btn-primary user-button" onclick="UserService.get(`+data[i].id+`)">Edit</button>
+                  <button type="button" class="btn btn-danger user-button" onclick="UserService.delete(`+data[i].id+`)">Delete</button>
                 </div>
               </div>
             </div>
@@ -54,14 +63,28 @@ var UserService = {
 
     get: function(id){
       $('.user-button').attr('disabled', true);
-      $.get('rest/users/'+id, function(data){
-        $("#description").val(data.description);
-        $("#id").val(data.id);
-        $("#created").val(data.created);
-        $("#exampleModal").modal("show");
-        $('.user-button').attr('disabled', false);
-      })
-    },
+      $.ajax({
+             url: 'rest/users/'+id,
+             type: "GET",
+             beforeSend: function(xhr){
+               xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+             },
+             success: function(data) {
+               $('#addUserForm input[name="id"]').val(data.id);
+               $('#addUserForm input[name="name"]').val(data.name);
+               $('#addUserForm input[name="description"]').val(data.description);
+               $('#addUserForm input[name="email"]').val(data.email);
+               $('#addUserForm input[name="password"]').val(data.password);
+
+               $('.user-button').attr('disabled', false);
+               $('#addUserModal').modal("show");
+             },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
+               toastr.error(XMLHttpRequest.responseJSON.message);
+               $('.user-button').attr('disabled', false);
+             }});
+        },
+
 
     add: function(user){
       $.ajax({

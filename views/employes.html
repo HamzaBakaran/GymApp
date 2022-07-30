@@ -1,35 +1,41 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Employes </h1>
-  <button class="btn btn-light btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addMembershipModal">Add new membership</button>
+  <button class="btn btn-light btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addEmployeModal">Add new employe</button>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
   ">
 
-<script src="./js/membership-service.js"></script>
-<div class="modal fade" id="addMembershipModal" tabindex="-1" aria-hidden="true">
+<script src="./js/employe-service.js"></script>
+
+<div class="modal fade" id="addEmployeModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form id="addMembershipForm">
+      <form id="addEmployeForm">
         <div class="modal-header">
-          <h5 class="modal-title">Add new membership</h5>
+          <h5 class="modal-title">Employe</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+           <input type="hidden" name="id" />
             <div class="form-group">
-              <label>Users ID</label>
-              <input name="user_id" type="number" class="form-control required" placeholder="Enter user ID">
+              <label>Name</label>
+              <input name="name" type="text" class="form-control required" placeholder="Enter name">
             </div>
             <div class="form-group">
-              <label>Membership ID</label>
-              <input name="membership_id" type="number" class="form-control required" placeholder="Enter membership ID">
+              <label>Surname</label>
+              <input name="surname" type="text" class="form-control required" placeholder="Enter surname">
             </div>
             <div class="form-group">
-              <label>Start Date</label>
-              <input name="start_date" type="date" class="form-control required" placeholder="Enter start date">
+              <label>Email</label>
+              <input name="email" type="email" class="form-control required" placeholder="Enter email">
             </div>
             <div class="form-group">
-              <label>End Date</label>
-              <input name="end_date" type="date" class="form-control required" placeholder="Enter end date">
+              <label>Satus</label>
+              <input name="status" type="text" class="form-control required" placeholder="Enter status">
+            </div>
+            <div class="form-group">
+              <label>Position</label>
+              <input name="position" type="text" class="form-control required" placeholder="Enter position">
             </div>
             </div>
         <div class="modal-footer">
@@ -57,16 +63,17 @@
 
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered" id="membership-table-full">
-        <thead id="membership-table-full-list">
+      <table class="table table-bordered" id="employe-table-full">
+        <thead id="employe-table-full-list">
 
           <tr>
             <th class="bg-dark text-light">ID</th>
             <th class="bg-dark text-light">Name</th>
-            <th class="bg-dark text-light">description</th>
-            <th class="bg-dark text-light">Start Date</th>
-            <th class="bg-dark text-light">End Date</th>
-            <th class="bg-dark text-light">Actions</th>
+            <th class="bg-dark text-light">Surname</th>
+            <th class="bg-dark text-light">Email</th>
+            <th class="bg-dark text-light">Status</th>
+            <th class="bg-dark text-light">Position</th>
+            <th class="bg-dark text-light">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -84,7 +91,13 @@
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 <script>
+  var token = localStorage.getItem("token");
+    if (token){
+      EmployeService.init();;
 
+    }else{
+      window.location.replace("login.html");
+    }
 
 
 </script>

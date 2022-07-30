@@ -247,8 +247,8 @@
     onReady: function() {MemmbershipService.init(); }
    });
    app.route({view: 'employes', load: 'employes.html',
-   onCreate: function() { },
-   onReady: function() { }
+   onCreate: function() {EmployeService.init(); },
+   onReady: function() {EmployeService.init(); }
   });
 
 
