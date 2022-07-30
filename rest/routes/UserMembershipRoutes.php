@@ -128,6 +128,34 @@ Flight::route('DELETE /usermembership/@id', function($id){
 Flight::route('GET /earned', function(){
   Flight::json(Flight::userMembershipService()->get_earned());
 });
+/**
+ * @OA\Get(path="/last_active/{id}", tags={"usermembership"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of user"),
+ *     @OA\Response(response="200", description="Fetch individual note")
+ * )
+ */
+
+
+/**
+* List invidiual todo
+*/
+Flight::route('GET /last_active/@id', function($id){
+  Flight::json(Flight::userMembershipService()->get_last_active_membership($id));
+});
+/**
+ * @OA\Get(path="/last_memberships/{id}", tags={"usermembership"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of user"),
+ *     @OA\Response(response="200", description="Fetch all memberships by user id ")
+ * )
+ */
+
+
+/**
+* List invidiual todo
+*/
+Flight::route('GET /last_memberships/@id', function($id){
+  Flight::json(Flight::userMembershipService()->get_last_memberships($id));
+});
 
 
 

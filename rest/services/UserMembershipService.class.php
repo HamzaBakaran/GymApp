@@ -20,6 +20,12 @@ class UserMembershipService extends BaseService{
   public function  get_earned(){
     return $this->dao->get_earned();
   }
+  public function  get_last_active_membership($id){
+    return $this->dao-> get_last_active_membership($id);
+  }
+  public function  get_last_memberships($id){
+    return $this->dao-> get_last_memberships($id);
+  }
 
 
 }

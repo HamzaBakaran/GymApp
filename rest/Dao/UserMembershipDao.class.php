@@ -35,6 +35,23 @@ class UserMembershipDao extends BaseDao{
                 WHERE users_membership.start_date >= NOW() - INTERVAL 30 DAY ";
          return $this->query_single($query);
       }
+      public function get_last_active_membership($id){
+         return $this->query_unique(" SELECT DATE_FORMAT(end_date,'%d/%m/%Y') as end_date,user_id,membership.`description`
+                                      FROM users_membership
+                                      JOIN membership ON membership.`id`=users_membership.`membership_id`
+                                      WHERE user_id= :id
+                                      ORDER BY end_date ASC
+                                      LIMIT 1", ['id' => $id]);
+
+       }
+       public function get_last_memberships($id){
+          return $this->query_unique(" SELECT users_membership.`id`,membership.`description`,users_membership.`start_date`,users_membership.`end_date`
+                                        FROM users_membership
+                                        JOIN membership ON membership.`id`=users_membership.`membership_id`
+                                        WHERE users_membership.`user_id`=:id
+                                        ORDER BY end_date DESC", ['id' => $id]);
+
+        }
 
 
 }

@@ -107,31 +107,30 @@ var EmployeService = {
           });
         },
 
-      get: function(id){
-      $('.employe-button').attr('disabled', true);
+        get: function(id){
+          $('.employe-button').attr('disabled', true);
+          $.ajax({
+                 url: 'rest/employe/'+id,
+                 type: "GET",
+                 beforeSend: function(xhr){
+                   xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+                 },
+                 success: function(data) {
+                   $('#addEmployeForm input[name="id"]').val(data.id);
+                   $('#addEmployeForm input[name="name"]').val(data.name);
+                   $('#addEmployeForm input[name="surname"]').val(data.surname);
+                   $('#addEmployeForm input[name="email"]').val(data.email);
+                   $('#addEmployeForm input[name="status"]').val(data.status);
+                   $('#addEmployeForm input[name="position"]').val(data.position);
 
-      $.ajax({
-         url: 'rest/employe/'+id,
-         type: "GET",
-         beforeSend: function(xhr){
-           xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
-         },
-         success: function(data) {
-           $('#addEmployeForm input[name="id"]').val(data.id);
-           $('#addEmployeForm input[name="name"]').val(data.name);
-           $('#addEmployeForm input[name="surname"]').val(data.surname);
-           $('#addEmployeForm input[name="email"]').val(data.email);
-           $('#addEmployeForm input[name="status"]').val(data.status);
-           $('#addEmployeForm input[name="position"]').val(data.position);
-
-           $('.employe-button').attr('disabled', false);
-           $('#addEmployeModal').modal("show");
-         },
-         error: function(XMLHttpRequest, textStatus, errorThrown) {
-           toastr.error(XMLHttpRequest.responseJSON.message);
-           $('.employe-button').attr('disabled', false);
-         }});
-    },
+                   $('.employe-button').attr('disabled', false);
+                   $('#addEmployeModal').modal("show");
+                 },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+                   toastr.error(XMLHttpRequest.responseJSON.message);
+                   $('.employe-button').attr('disabled', false);
+                 }});
+            },
     update: function(id, entity){
       $.ajax({
         url: 'rest/employe/'+id,
