@@ -74,6 +74,12 @@
               Employes
             </a>
           </li>
+          <li class="nav-item  bg-dark">
+            <a class="nav-link text-light bg-dark" href="#membership_plans">
+              <span data-feather="users" class="fa fa-sliders"></span>
+              Manage membership plans
+            </a>
+          </li>
 
 
 
@@ -117,40 +123,10 @@
          <section id="users" ></section>
          <section id="memberships" ></section>
          <section id="employes" ></section>
+         <section id="membership_plans" ></section>
 
 
 
-
-
-
-<!--
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <button class="btn btn-success btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addUserModal">Add new user</button>
-
-
-      </div>
-      <div class="container marketing" style="margin-top:10px;">
-
-      <div class="row">
-        <div>
-
-        </div>
-      </div>
-
-      <div id="user-list" class="row">
-        <div class="spinner-border" role="status">
-          <span class="sr-only"></span>
-        </div>
-      </div>
-    </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-
-    </main>
-  -->
   </div>
 </div>
 
@@ -180,6 +156,8 @@
 <script src="js/util.js"></script>
 
 <script src="js/employe-service.js"></script>
+
+<script src="js/membership-plans-service.js"></script>
 
 
 
@@ -252,6 +230,10 @@
    onCreate: function() {EmployeService.init(); },
    onReady: function() {EmployeService.init(); }
   });
+  app.route({view: 'membership_plans', load: 'membership_plans.html',
+  onCreate: function() {MembershipPlanService.init(); },
+  onReady: function() {MembershipPlanService.init(); }
+ });
 
 
      // run app

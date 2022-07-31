@@ -1,0 +1,110 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Manage plans</h1>
+  <button class="btn btn-success btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addPlanModal">Add new membership plan</button>
+  <script src="js/jquery-3.6.0.min.js"></script>
+
+  <script src="js/jQuerySPApp.js"></script>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/jquery.validate.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+  <script src="js/membership-plans-service.js"></script>
+  <!-- Modal -->
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="addPlanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="addPlanForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Add new membership plan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Description</label>
+              <input name="description" type="text" class="form-control required" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label>Price</label>
+              <input name="price" type="number" class="form-control required" placeholder="Enter description">
+            </div>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Update Modal -->
+  <div class="modal fade" id="updatePlanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="updatePlanForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Update membership plan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="id" />
+            <div class="form-group">
+              <label>Description</label>
+              <input name="description" type="text" class="form-control required" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label>Price</label>
+              <input name="price" type="number" class="form-control required" placeholder="Enter description">
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container marketing" style="margin-top:10px;">
+
+  <div class="row">
+    <div>
+
+    </div>
+  </div>
+
+  <div id="plan-list" class="row">
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+<script>
+    var token = localStorage.getItem("token");
+  if (token) {
+    MembershipPlanService.init();
+
+  } else {
+    window.location.replace("login.html");
+  }
+  */
+</script>

@@ -3,22 +3,35 @@ var EmployeService = {
           $('#addEmployeForm').validate({
             submitHandler: function(form) {
               var entity = Object.fromEntries((new FormData(form)).entries());
-              if (!isNaN(entity.id)){
-             // update method
+
+               // add method
+               EmployeService.add(entity);
+             }
+
+
+         });
+
+         $('#updateEmployeForm').validate({
+           submitHandler: function(form) {
+             var entity = Object.fromEntries((new FormData(form)).entries());
              var id = entity.id;
-             delete entity.id;
-             EmployeService.update(id, entity);
-           }else{
-             // add method
-             EmployeService.add(entity);
-           }
-         }
-
-          });
-          EmployeService.list();
+             console.log(id);
+              delete entity.id;
+             console.log("Before update");
+              // update method
+              EmployeService.update(id,entity);
+            }
 
 
-        },
+        });
+         EmployeService.list();
+
+
+
+       },
+
+
+
 
         list: function(){
         /*  $.get("rest/users", function(data) {
@@ -116,15 +129,15 @@ var EmployeService = {
                    xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
                  },
                  success: function(data) {
-                   $('#addEmployeForm input[name="id"]').val(data.id);
-                   $('#addEmployeForm input[name="name"]').val(data.name);
-                   $('#addEmployeForm input[name="surname"]').val(data.surname);
-                   $('#addEmployeForm input[name="email"]').val(data.email);
-                   $('#addEmployeForm input[name="status"]').val(data.status);
-                   $('#addEmployeForm input[name="position"]').val(data.position);
+                   $('#updateEmployeForm input[name="id"]').val(id);
+                   $('#updateEmployeForm  input[name="name"]').val(data.name);
+                   $('#updateEmployeForm  input[name="surname"]').val(data.surname);
+                   $('#updateEmployeForm  input[name="email"]').val(data.email);
+                   $('#updateEmployeForm  input[name="status"]').val(data.status);
+                   $('#updateEmployeForm  input[name="position"]').val(data.position);
 
                    $('.employe-button').attr('disabled', false);
-                   $('#addEmployeModal').modal("show");
+                   $('#updateEmployeModal').modal("show");
                  },
                  error: function(XMLHttpRequest, textStatus, errorThrown) {
                    toastr.error(XMLHttpRequest.responseJSON.message);
@@ -144,7 +157,7 @@ var EmployeService = {
         success: function(result) {
             $("#employe-table-full-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             EmployeService.list(); // perf optimization
-            $("#addEmployeModal").modal("hide");
+            $("#updateEmployeModal").modal("hide");
             toastr.success("Employe updated!");
         }
       });

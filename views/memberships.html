@@ -6,6 +6,7 @@
   ">
 
 <script src="./js/membership-service.js"></script>
+
 <div class="modal fade" id="addMembershipModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -15,6 +16,42 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <div class="form-group">
+              <label>Users ID</label>
+              <input name="user_id" type="number" class="form-control required" placeholder="Enter user ID">
+            </div>
+            <div class="form-group">
+              <label>Membership ID</label>
+              <input name="membership_id" type="number" class="form-control required" placeholder="Enter membership ID">
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input name="start_date" type="date" class="form-control required" placeholder="Enter start date">
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <input name="end_date" type="date" class="form-control required" placeholder="Enter end date">
+            </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateMembershipModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="updateMembershipForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Update membership</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" />
             <div class="form-group">
               <label>Users ID</label>
               <input name="user_id" type="number" class="form-control required" placeholder="Enter user ID">
