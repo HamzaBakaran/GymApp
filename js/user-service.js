@@ -3,18 +3,26 @@ var UserService = {
       $('#addUserForm').validate({
         submitHandler: function(form) {
           var entity = Object.fromEntries((new FormData(form)).entries());
-          if (!isNaN(entity.id)){
-           // update method
-           var id = entity.id;
-           delete entity.id;
-           UserService.update(id, entity);
-         }else{
+
            // add method
            UserService.add(entity);
          }
-       }
+
 
      });
+
+     $('#updateUserForm').validate({
+       submitHandler: function(form) {
+         var entity = Object.fromEntries((new FormData(form)).entries());
+         var id = entity.id;
+          delete entity.id;
+         console.log("Before update");
+          // update method
+          UserService.update(id,entity);
+        }
+
+
+    });
      UserService.list();
 
 
@@ -70,14 +78,14 @@ var UserService = {
                xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
              },
              success: function(data) {
-               $('#addUserForm input[name="id"]').val(data.id);
-               $('#addUserForm input[name="name"]').val(data.name);
-               $('#addUserForm input[name="description"]').val(data.description);
-               $('#addUserForm input[name="email"]').val(data.email);
-               $('#addUserForm input[name="password"]').val(data.password);
+               $('#updateUserForm input[name="id"]').val(data.id);
+               $('#updateUserForm input[name="name"]').val(data.name);
+               $('#updateUserForm input[name="description"]').val(data.description);
+               $('#updateUserForm input[name="email"]').val(data.email);
+               $('#updateUserForm input[name="password"]').val(data.password);
 
                $('.user-button').attr('disabled', false);
-               $('#addUserModal').modal("show");
+               $('#updateUserModal').modal("show");
              },
              error: function(XMLHttpRequest, textStatus, errorThrown) {
                toastr.error(XMLHttpRequest.responseJSON.message);
@@ -106,8 +114,8 @@ var UserService = {
       });
     },
 
-    update: function(id, entity){
-  $.ajax({
+    update: function(id,entity){
+    $.ajax({
     url: 'rest/users/'+id,
     type: 'PUT',
     beforeSend: function(xhr){
@@ -119,10 +127,14 @@ var UserService = {
     success: function(result) {
         $("#user-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
         UserService.list(); // perf optimization
-        $("#addUserModal").modal("hide");
+        $("#updateUserModal").modal("hide");
         toastr.success("User updated!");
-    }
-  });
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      toastr.error(XMLHttpRequest.responseJSON.message);
+      $('.user-button').attr('disabled', false);
+    }});
+
 },
 
 
@@ -142,7 +154,7 @@ var UserService = {
       });
     },
 
-  
+
 
 
 

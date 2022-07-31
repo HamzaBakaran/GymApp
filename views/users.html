@@ -3,50 +3,30 @@
   <button class="btn btn-success btn-lg text-light bg-dark" data-bs-toggle="modal" data-bs-target="#addUserModal">Add new user</button>
   <script src="js/jquery-3.6.0.min.js"></script>
 
-   <script src="js/jQuerySPApp.js"></script>
+  <script src="js/jQuerySPApp.js"></script>
 
-<script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
-<script src="js/jquery.validate.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
-">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-<script src="js/user-service.js"></script>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input id="id" type="hidden" />
-        <input id="description" type="text" />
-        <input id="created" type="hidden" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary save-todo-button" onclick="saveUser()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Add Modal -->
-<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="addUserForm">
-        <div class="modal-header">
-          <h5 class="modal-title">Note</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" />
+  <script src="js/user-service.js"></script>
+  <!-- Modal -->
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="addUserForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Add user</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
             <div class="form-group">
               <label>Name</label>
               <input name="name" type="text" class="form-control required" placeholder="Enter name">
@@ -66,9 +46,9 @@
             <div class="form-group">
               <label>Role</label>
               <select name="role" size="2" multiple class="form-control required" placeholder="Enter role">
-              <option value="admin">admin</option>
-              <option value="user">user</option>
-            </select>
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+              </select>
             </div>
 
 
@@ -76,41 +56,88 @@
               <label>Created</label>
               <input name="created" type="date" class="form-control required" placeholder="Created date">
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+<!-- Update Modal -->
+  <div class="modal fade" id="updateUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="updateUserForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Update user</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="id" />
+            <div class="form-group">
+              <label>Name</label>
+              <input name="name" type="text" class="form-control required" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input name="description" type="text" class="form-control required" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label>email</label>
+              <input name="email" type="email" class="form-control required" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label>password</label>
+              <input name="password" type="password" class="form-control required" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <select name="role" size="2" multiple class="form-control required" placeholder="Enter role">
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+              </select>
+            </div>
 
+
+            <div class="form-group">
+              <label>Created</label>
+              <input name="created" type="date" class="form-control required" placeholder="Created date">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 </div>
 <div class="container marketing" style="margin-top:10px;">
 
-<div class="row">
-  <div>
+  <div class="row">
+    <div>
 
+    </div>
   </div>
-</div>
 
-<div id="user-list" class="row">
-  <div class="spinner-border" role="status">
-    <span class="sr-only"></span>
+  <div id="user-list" class="row">
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
   </div>
-</div>
 </div>
 
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 <script>
   var token = localStorage.getItem("token");
-    if (token){
-      UserService.init();
+  if (token) {
+    UserService.init();
 
-    }else{
-      window.location.replace("login.html");
-    }
-
+  } else {
+    window.location.replace("login.html");
+  }
 </script>
