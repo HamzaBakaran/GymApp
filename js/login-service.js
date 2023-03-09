@@ -12,6 +12,7 @@ var UserLoginService = {
     });
   },
   login: function(entity){
+    $('.login-button').attr('disabled', true);
     $.ajax({
       url: 'rest/login',
       type: 'POST',
@@ -25,6 +26,7 @@ var UserLoginService = {
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         toastr.error(XMLHttpRequest.responseJSON.message);
+        $('.login-button').attr('disabled', false);
       }
     });
   },

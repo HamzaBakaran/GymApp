@@ -143,8 +143,12 @@ var MembershipPlanService = {
             $("#plan-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
             MembershipPlanService.list();
             toastr.success("Plan deleted!");
-        }
-      });
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          toastr.error(XMLHttpRequest.responseJSON.message);
+          $('.plan-button').attr('disabled', false);
+        }});
+      
     },
 
 

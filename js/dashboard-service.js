@@ -5,6 +5,7 @@ var DashboardService = {
           DashboardService.earned();
           DashboardService.employes_active();
           DashboardService.list();
+          DashboardService.get_name();
         },
 
         count: function(){
@@ -157,5 +158,9 @@ var DashboardService = {
 
           }
           });
+        },
+        get_name:function(){
+          $("#name").html(`<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" id="name" >`+parse_jwt(localStorage.getItem('token')).name+`</a>`);
+            //$("#end").html(`<div class="text-info text-center mt-2" id="end"><h1>`+parse_jwt(localStorage.getItem('token')).id+`</h1></div>`);
         },
         }
